@@ -123,7 +123,7 @@ function initComposer() {
 }
 
 function loadModel() {
-    new GLTFLoader().load('/model/monkey.glb', (gltf) => {
+    new GLTFLoader().load('./model/monkey.glb', (gltf) => {
         gltf.scene.traverse((child) => {
             if (child instanceof Mesh) {
                 mesh = child
@@ -134,7 +134,7 @@ function loadModel() {
             roughness: 1,
             color: 0x8099aa,
             flatShading: false,
-            roughnessMap: new TextureLoader().load('textures/roughness.jpg'),
+            roughnessMap: new TextureLoader().load('./textures/roughness.jpg'),
         })
         
         material.onBeforeCompile = (shader) => {
@@ -221,7 +221,7 @@ function loadModel() {
         pmremGenerator.compileEquirectangularShader();
         new RGBELoader()
             .setDataType( UnsignedByteType )
-            .setPath( '/textures/equirectangular/' )
+            .setPath( './textures/equirectangular/' )
             .load( 'studio.hdr',  ( hdrEquirect ) => {
                 var hdrCubeRenderTarget = pmremGenerator.fromEquirectangular( hdrEquirect );
                 pmremGenerator.dispose();
